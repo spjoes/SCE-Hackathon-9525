@@ -1,50 +1,50 @@
-# Welcome to your Expo app 👋
+# JobSwipe: Tiktok-like Job Discovery Platform
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+JobSwipe is a mobile application built with React Native and Expo to revolutionize the job search experience. It presents job opportunities in a brainrot-short-form video format, allowing users to swipe through listings.
 
-## Get started
+## ✨ Features
 
-1. Install dependencies
+- **Vertical Video Feed**: An immersive, full-screen video feed for browsing job posts.
+- **Gesture Navigation**: Intuitively swipe up and down to discover new job opportunities.
+- **Detailed Job Information**: Each video is accompanied by essential details like job title, company, location, and salary.
 
-   ```bash
-   npm install
-   ```
+## 🚀 Tech Stack
 
-2. Start the app
+- **Framework**: React Native with Expo
+- **Language**: TypeScript
+- **Video Playback**: `expo-video`
+- **Animations & Gestures**: `react-native-reanimated`, `react-native-gesture-handler`
+- **Navigation**: Expo Router (file-based routing)
 
-   ```bash
-   npx expo start
-   ```
+## 🏁 Getting Started
 
-In the output, you'll find options to open the app in a
+To get a local copy up and running, follow these simple steps.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Prerequisites
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- Node.js and npm installed.
+- Expo Go app on your mobile device or an emulator/simulator setup.
 
-## Get a fresh project
+### Installation & Running
 
-When you're ready, run:
+1.  Install NPM packages:
+    ```bash
+    npm install
+    ```
+2.  Start the development server:
+    ```bash
+    npx expo start
+    ```
+This will open the Expo developer tools in your browser. You can then scan the QR code with the Expo Go app on your phone or run the app on an emulator/simulator.
 
-```bash
-npm run reset-project
-```
+## 📂 Project Structure
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+The main logic for the application can be found in the following files:
 
-## Learn more
+-   `app/index.tsx`: The main screen of the app that renders the video player.
+-   `components/JobVideoPlayer.tsx`: The core component for the video feed, handling gestures, state management, and video playback.
+-   `assets/videos/jobVideos.ts`: A mock data source for the job video listings.
 
-To learn more about developing your project with Expo, look at the following resources:
+## 🤝 Contributing
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Contributions, issues, and feature requests are welcome!

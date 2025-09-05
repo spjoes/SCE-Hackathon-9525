@@ -29,10 +29,17 @@ interface JobVideoPlayerProps {
   initialIndex?: number;
 }
 
-const VideoPlayer = ({ video, isActive, isPlaying, onTogglePlayPause }) => {
+interface VideoPlayerProps {
+  video: JobVideo;
+  isActive: boolean;
+  isPlaying: boolean;
+  onTogglePlayPause: () => void;
+}
+
+const VideoPlayer = ({ video, isActive, isPlaying, onTogglePlayPause }: VideoPlayerProps) => {
   const player = useVideoPlayer(video.uri, (player) => {
-    player.isLooping = true;
-    player.isMuted = false;
+    player.loop = true;
+    player.muted = false;
   });
 
   useEffect(() => {
@@ -40,11 +47,14 @@ const VideoPlayer = ({ video, isActive, isPlaying, onTogglePlayPause }) => {
       player.play();
     } else {
       player.pause();
+      if (!isActive) {
+        player.currentTime = 0;
+      }
     }
   }, [isActive, isPlaying, player]);
-  
+
   return (
-    <TouchableOpacity 
+    <TouchableOpacity
       style={styles.videoContainer}
       onPress={onTogglePlayPause}
       activeOpacity={1}
@@ -68,7 +78,6 @@ const JobVideoPlayer: React.FC<JobVideoPlayerProps> = ({
   const [isScrolling, setIsScrolling] = useState(false);
   const translateY = useSharedValue(0);
 
-  // Get current, previous, and next videos for smooth scrolling
   const getCurrentVideos = () => {
     const prevIndex = (currentIndex - 1 + videos.length) % videos.length;
     const nextIndex = (currentIndex + 1) % videos.length;
@@ -144,27 +153,14 @@ const JobVideoPlayer: React.FC<JobVideoPlayerProps> = ({
         onTogglePlayPause={togglePlayPause} 
       />
       
-      {/* Video overlay with job information */}
       <View style={styles.overlay}>
         <View style={styles.jobInfo}>
           <Text style={styles.jobTitle}>{video.title}</Text>
           <Text style={styles.companyName}>{video.company}</Text>
           <Text style={styles.location}>{video.location}</Text>
           <Text style={styles.salary}>{video.salary}</Text>
-          <Text style={styles.description} numberOfLines={3}>
-            {video.description}
-          </Text>
-          
-          <View style={styles.tagsContainer}>
-            {video.tags.map((tag, index) => (
-              <View key={index} style={styles.tag}>
-                <Text style={styles.tagText}>#{tag}</Text>
-              </View>
-            ))}
-          </View>
         </View>
 
-        {/* Action buttons */}
         <View style={styles.actionButtons}>
           <TouchableOpacity style={styles.actionButton}>
             <Text style={styles.actionButtonText}>❤️</Text>
@@ -181,7 +177,6 @@ const JobVideoPlayer: React.FC<JobVideoPlayerProps> = ({
         </View>
       </View>
 
-      {/* Play/Pause overlay */}
       <View 
         style={styles.playPauseOverlay}
         pointerEvents="none"
@@ -200,17 +195,14 @@ const JobVideoPlayer: React.FC<JobVideoPlayerProps> = ({
       <StatusBar hidden />
       <PanGestureHandler onGestureEvent={gestureHandler}>
         <Animated.View style={[styles.container, animatedStyle]}>
-          {/* Previous video */}
           <View style={[styles.videoWrapper, { top: -SCREEN_HEIGHT }]}>
             {renderVideoItem(previous)}
           </View>
 
-          {/* Current video */}
           <View style={styles.videoWrapper}>
             {renderVideoItem(current, true)}
           </View>
 
-          {/* Next video */}
           <View style={[styles.videoWrapper, { top: SCREEN_HEIGHT }]}>
             {renderVideoItem(next)}
           </View>
@@ -248,6 +240,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 20,
     paddingBottom: 40,
+    alignItems: 'flex-end',
   },
   jobInfo: {
     flex: 1,
@@ -347,3 +340,4 @@ const styles = StyleSheet.create({
 });
 
 export default JobVideoPlayer;
+
