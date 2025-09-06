@@ -17,7 +17,7 @@ export const MyComposition: React.FC<MyCompositionProps> = ({
     characterStartTimes,
     characterEndTimes,
     audioFile,
-    backgroundVideo = 'Minecraft Parkour Gameplay NO COPYRIGHT (Vertical) [s600FYgI5-s].mp4'
+    backgroundVideo = 'tCBOhczn6Ok.mp4'
 }) => {
     const {fps} = useVideoConfig();
     
