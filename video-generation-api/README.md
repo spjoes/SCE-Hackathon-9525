@@ -1,5 +1,8 @@
 # video-generation-api
 
+
+## Please note that most essential files are missing. Due to hackathon time constraints, API keys were hardcoded. This means we did not upload any file that had API keys. I will come back later and upload those
+
 To install dependencies:
 
 ```bash
